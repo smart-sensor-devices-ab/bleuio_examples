@@ -160,7 +160,7 @@ const messageListener = async () => {
             }
         });
 
-        if (!connectedToPeripheral) {
+        if (!connected) {
             clearInterval(messageListener);
         }
     }, 500);
