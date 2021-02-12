@@ -122,7 +122,7 @@ const connectionListener = async () => {
         }
 
         // Stop the loop
-        if (!connected) {
+        if (!advertising) {
             clearInterval(connectionListener);
         }
     }, 500);
@@ -146,7 +146,7 @@ const messageListener = async () => {
             }
         });
 
-        if (!connected) {
+        if (!advertising) {
             clearInterval(messageListener);
         }
     }, 500);
