@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>BleuIO SPS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-md mt-5">
+        <div class="row">
+            <div class="page-header">
+                <h1>
+                    BleuIO SPS - <small>Peripheral</small>
+                </h1>
+            </div>
+        </div>
+        <div class="row mt-5 p-0">
+            <div id="buttonRow" class="d-flex justify-content-left">
+                <div class="d-flex p-1">
+                    <button type="button" id="connectButton" class="btn btn-success">
+                        Connect to dongle
+                    </button>
+                </div>
+                <div class="d-flex p-1">
+                    <button type="button" id="advertisingButton" class="btn btn-success ">
+                        Start advertising
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h5 style="display: inline-block;">
+                    Message:
+                </h5>
+                <input type="text" id="messageField" class="form-control"
+                    style="width: 300px; display: inline-block;" />
+                <button type="button" style="margin-top: -8px; display: inline-block;" id="messageButton"
+                    class="btn btn-success ">
+                    Send
+                </button>
+                <p id="output">
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <script src="/peripheral.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>BleuIO - Eddystone beacon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-md mt-5">
+        <div class="row">
+            <div class="page-header">
+                <h1>
+                    BleuIO - <small>Eddystone beacon</small>
+                </h1>
+            </div>
+        </div>
+        <div class="row mt-5 p-0">
+            <div id="buttonRow" class="d-flex justify-content-left">
+                <div class="d-flex p-1">
+                    <button type="button" id="connectButton" class="btn btn-success">
+                        Connect
+                    </button>
+                </div>
+                <div class="d-flex p-1">
+                    <button type="button" id="eddystoneButton" class="btn btn-success disabled">
+                        Create an Eddystone beacon
+                    </button>
+                </div>
+                <div class="d-flex p-1">
+                    <h6 class="m-2">URL:</h6>
+                    <input type="text" id="urlInputField" class="form-control" style="width: 451px;"
+                        value="0d:16:aa:fe:10:00:03:67:6f:6f:67:6c:65:07" />
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h5>
+                    Output:
+                </h5>
+                <p id="output">
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
