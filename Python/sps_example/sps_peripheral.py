@@ -43,14 +43,7 @@ try:
                 response = str(my_dongle.rx_buffer)
                 if "Received" in response:
                     print(response)
-                    # Clean up the response
-                    response = response.replace("b'\\r\\n", "")
-                    response = response.replace("b''", "")
-                    response = response.replace("\\r\\n'", "")
-                    response = response.replace("\\n", "")
-                    response = response.replace("\\r\\r", "\n")
-
-                    print(response)
+                    my_dongle.rx_buffer = b""
         else:
             print("Trying to connect to central")
             sleep(2)

@@ -17,7 +17,7 @@ target_device_address = ""
 while not connected_to_dongle:
     try:
         # Specify the COM PORT connected to the dongle
-        my_dongle = BleuIo(port="COM40")
+        my_dongle = BleuIo(port="COM3")
         # Start the deamon (background process handler) for RX and TX data.
         my_dongle.start_daemon()
 
