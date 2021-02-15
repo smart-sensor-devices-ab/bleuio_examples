@@ -59,13 +59,12 @@ const connect = async () => {
  * and disables the button to start the beacon
  */
 const disconnect = async () => {
-    // Disconnect from target device
-    await my_dongle.at_gapdisconnect();
-
+    
+    disconnectFromPeripheral()
+    sleep(800)
     // Disconnects the dongle
     await my_dongle.at_disconnect();
-
-    connected = false;
+    
 
     printResponse('Dongle disconnected');
 
@@ -74,6 +73,9 @@ const disconnect = async () => {
     messageButton.removeEventListener('click', handleSendMessage);
 
     connectButton.textContent = 'Connect to dongle';
+    connected = false;
+    // Disconnect from target device
+    
 }
 
 /**
@@ -82,7 +84,7 @@ const disconnect = async () => {
 const handleConnectToPeripheral = () => {
     // Connect to a peripheral or disconnect from it
     if (!connectedToPeripheral) {
-        connectToPeripheral();
+        connectToPeripheral();        
     } else {
         disconnectFromPeripheral();
     }
@@ -92,11 +94,19 @@ const handleConnectToPeripheral = () => {
  * Checks the information about the dongle and sets it up to connect to a peripheral device
  */
 const connectToPeripheral = async () => {
-    await my_dongle.at_central();
-
-    // Connect to the peripheral with the address provided in the DOM
+    my_dongle.ati().then(async (r)=>{
+        if(r[5].includes('Peripheral')){
+           await my_dongle.at_central();
+        }
+        if(r[6]!='Connected'){
+            await my_dongle.at_gapdisconnect();
+        }
+        // Connect to the peripheral with the address provided in the DOM
+    
+    })
+    sleep(200)
     await my_dongle.at_gapconnect(targetAddressField.value);
-
+        
     // Fetch the dongle status
     let dongleStatus = await my_dongle.ati();
 
@@ -109,7 +119,7 @@ const connectToPeripheral = async () => {
             await sleep(800)
         }
     }
-
+    connectToPeripheralButton.textContent = 'Disconnect from peripheral';
     printResponse('Connected to peripheral');
     connectedToPeripheral = true;
 
@@ -158,12 +168,13 @@ const messageListener = async () => {
                 //     printResponse('[Received]: ' + dongleStatus[index + 1])
                 // }
             }
+            if (connectedToPeripheral===false) {
+                clearInterval(messageListener);
+            }
         });
-
-        if (!connected) {
-            clearInterval(messageListener);
-        }
+        
     }, 500);
+    
 }
 
 /**
@@ -171,8 +182,10 @@ const messageListener = async () => {
  */
 const disconnectFromPeripheral = async () => {
     await my_dongle.at_gapdisconnect();
-    connectedToPeripheral = false;
+    sleep(800)
     printResponse('Disconnected from peripheral');
+    connectToPeripheralButton.textContent = 'Connect to target';
+    connectedToPeripheral = false;
 }
 
 /**
